@@ -28,9 +28,9 @@
         <div class="block-parameter" ng-repeat="param in params">
           <div class="variable">
             <span ng-bind="param.name" ng-show="isView()"></span>
-            <input type="text" class="var-edit" ng-keyup="refreshEvalValue()" ng-model="param.name" ng-show="isEdit()"></input>
+            <input type="text" class="var-edit" ng-change="refreshEvalValue()" ng-model="param.name" ng-show="isEdit()"></input>
           </div>
-          <input class="value-input" ng-keyup="refreshEvalValue()" ng-click="updateInstr()" type="number" ng-model="param.val"/>
+          <input class="value-input" ng-change="refreshEvalValue()" ng-click="updateInstr()" type="number" ng-model="param.val"/>
           <div class="description">
             <span ng-bind="param.desc" ng-show="isView()"></span>
             <input type="text" class="desc-edit" ng-model="param.desc" ng-show="isEdit()"></input>
