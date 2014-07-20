@@ -7,3 +7,5 @@ How to use
 ----------
 1. Install Gulp
 2. npm install
+3. gulp
+4. browse to : dist/index.html

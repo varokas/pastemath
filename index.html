@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="lib/normalize/normalize.css">
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/jsmodal-light.css">
     <link rel="stylesheet" href="css/pastemath.css">
     <title>PasteMath</title>
@@ -56,16 +56,21 @@
       </div>
       <div class="copy"><a href="http://pastemath.varokas.com">PasteMath</a> by <a href="http://www.varokas.com">varokas.com, 2014</a></div>
     </div>
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="bower_components/mathjs/dist/math.min.js"></script>
+
+    <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="lib/mathjs/math.min.js"></script>
+
     <script type="text/x-mathjax-config">
-    	MathJax.Hub.Config({
-    	  messageStyle: "none"
-    	});
-  	</script>
+      MathJax.Hub.Config({
+        messageStyle: "none"
+      });
+    </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
-    <script type="text/javascript" src="js/lib/jsmodal-1.0d.min.js"></script>
+    <script type="text/javascript">
+      MathJax.Hub.Config({ showProcessingMessages: false });
+    </script>
+    <script type="text/javascript" src="js/jsmodal-1.0d.min.js"></script>
     <script type="text/javascript" src="js/pastemath.js"></script>
   </body>
 </html>
