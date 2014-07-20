@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var bower = require('gulp-bower');
 var rimraf = require('gulp-rimraf');
 var deploy = require("gulp-gh-pages");
+var deploy = require("gulp-gh-pages");
 
 gulp.task('default', function() {
   bower()
@@ -24,6 +25,8 @@ gulp.task('default', function() {
 });
 
 gulp.task('dist', function() {
+  gulp.src('CNAME')
+    .pipe(gulp.dest('dist'));
   gulp.src('index.html')
     .pipe(gulp.dest('dist'));
   gulp.src('js/**/*')
@@ -32,4 +35,9 @@ gulp.task('dist', function() {
     .pipe(gulp.dest('dist/css'));
   gulp.src('lib/**/*')
     .pipe(gulp.dest('dist/lib'));
+});
+
+gulp.task('deploy', function() {
+  gulp.src("./dist/**/*")
+    .pipe(deploy({}));
 });
