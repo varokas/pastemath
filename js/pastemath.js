@@ -12,20 +12,18 @@ app.controller("PasteMathController", function($scope) {
   $scope.mode = VIEW;
   $scope.instructionText = "Click to edit numeric values";
 
-  var formulaNameFromQuery = getParameterByName("t");
-  var exprFromQuery = getParameterByName("e");
-  var paramsFromQuery = getParameterByName("p");
-  var resultFromQuery = getParameterByName("r");
+  $scope.formulaName = valOrDefault(getParameterByName("t"), "Your Formula Name Here");
+  $scope.expr = valOrDefault(getParameterByName("e"), "y = (pas+te)/math");
+  $scope.params = valOrDefault(unpackParams(getParameterByName("p")), [
+    {"name": "pas", "val": 123, "desc": "enter variable"},
+    {"name": "te", "val": 45, "desc": "description and"},
+    {"name": "math", "val": 67, "desc": "default values"}
+  ]);
 
-  $scope.formulaName = "Your Formula Name Here";
-  $scope.expr = "y = (pas+te)/math";
-  $scope.params = [
-    {"name": "pas", "val": 1423, "desc": "enter variable"},
-    {"name": "te", "val": 123, "desc": "description and"},
-    {"name": "math", "val": 123, "desc": "default values"}
-  ];
-  $scope.result = {"name": "y", "desc": "with result description"};
-
+  $scope.result = valOrDefault(
+		unpackResult(getParameterByName("r")),
+		{"name": "y", "desc": "with result description"}
+	);
   setInitialPrettyPrint($scope.expr);
   refreshEvalValue();
 
@@ -115,8 +113,27 @@ app.controller("PasteMathController", function($scope) {
     });
   }
 
+	function unpackParams(paramsTxt) {
+		if(paramsTxt == undefined) return undefined;
+
+		var lines = paramsTxt.split("\n");
+		return lines.map( function(l) {
+	    var tokens = l.split(",");
+
+	    return { name: tokens[0], val: parseFloat(tokens[1]), desc: tokens[2] };
+	  });
+	}
+
   function packResult(resultParams) {
     return resultParams.name + "," + resultParams.desc
+  }
+
+	function unpackResult(resultTxt) {
+		if(resultTxt == undefined) return undefined;
+
+    var tokens = resultTxt.split(",");
+
+    return { name: tokens[0], desc: tokens[1] };
   }
 
   function refreshEvalValue() {
@@ -134,6 +151,10 @@ app.controller("PasteMathController", function($scope) {
       $scope.result.val = "Error";
     }
   }
+
+	function valOrDefault(val, def) {
+		return val ? val : def;
+	}
 
   function setInitialPrettyPrint(exprToSet) {
     document.getElementById('pretty').innerHTML = '$$' + math.parse(exprToSet).toTex() + '$$';
