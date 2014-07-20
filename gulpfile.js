@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var bower = require('gulp-bower');
 var rimraf = require('gulp-rimraf');
+var deploy = require("gulp-gh-pages");
 
 gulp.task('default', function() {
   bower()
@@ -23,5 +24,6 @@ gulp.task('default', function() {
 });
 
 gulp.task('dist', function() {
-
+  gulp.src('index.html')
+    .pipe(gulp.dest('dist'));
 });
