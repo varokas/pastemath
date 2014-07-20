@@ -1,0 +1,24 @@
+{
+  "name": "pastemath",
+  "version": "0.0.1",
+  "authors": [
+    "Varokas Panusuwan <varokas@panusuwan.com>"
+  ],
+  "license": "BSD",
+  "homepage": "http://pastemath.varokas.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "normalize-css": "~3.0.1",
+    "font-awesome": "~4.1.0",
+    "angular": "~1.2.20",
+    "mathjs": "~0.25.0",
+    "jquery": "~2.1.1"
+  }
+}
