@@ -26,4 +26,10 @@ gulp.task('default', function() {
 gulp.task('dist', function() {
   gulp.src('index.html')
     .pipe(gulp.dest('dist'));
+  gulp.src('js/**/*')
+    .pipe(gulp.dest('dist/js'));
+  gulp.src('css/**/*')
+    .pipe(gulp.dest('dist/css'));
+  gulp.src('lib/**/*')
+    .pipe(gulp.dest('dist/lib'));
 });
